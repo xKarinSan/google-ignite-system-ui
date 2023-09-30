@@ -13,7 +13,7 @@ function App() {
 
     return (
         <>
-            <Heading>Chakra UI</Heading>
+            <Heading variant="h3"  fontWeight={"normal"}>System</Heading>
             <Routes>
                 <Route path="/competitions" element={<CompetitionPage />} />
                 <Route path="/vendors" element={<VendorPage />} />
