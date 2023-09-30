@@ -46,7 +46,7 @@ function CompetitionPage() {
             const [year, month, day] = competitionDate.split("-");
             const endDate = new Date(
                 parseInt(year),
-                parseInt(month),
+                parseInt(month) - 1,
                 parseInt(day),
                 0,
                 0,
@@ -56,8 +56,8 @@ function CompetitionPage() {
             console.log("endDate", endDate);
             await push(competitionRef, {
                 competitionName,
-                startDate: new Date().toUTCString(),
-                endDate: endDate.toUTCString(),
+                startDate: new Date().getTime(),
+                endDate: endDate.getTime(),
             }).then(() => {
                 toast({
                     title: "Competition added",
