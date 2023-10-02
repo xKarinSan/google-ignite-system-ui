@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Input, Text, useToast } from "@chakra-ui/react";
 import { db } from "../firebaseConfig";
 import { ref, onValue, push } from "firebase/database";
+import { ModifiedInput } from "../General/ModifiedInput";
 
 type Competition = {
     competitionName: string;
@@ -134,27 +135,3 @@ function CompetitionPage() {
 
 export default CompetitionPage;
 
-function ModifiedInput({
-    type,
-    value,
-    placeholder,
-    onChange,
-}: {
-    type: string;
-    value: any;
-    placeholder: string;
-    onChange: (value: any) => void;
-}) {
-    return (
-        <>
-            {/* <Text>{placeholder}:</Text> */}
-            <Input
-                type={type}
-                value={value}
-                placeholder={placeholder ? placeholder : ""}
-                margin={5}
-                onChange={(e) => onChange(e.target.value)}
-            />
-        </>
-    );
-}

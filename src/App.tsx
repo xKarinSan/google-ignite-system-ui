@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 // ================= pages =================
 import CompetitionPage from "./competitions/CompetitionPage";
 import VendorPage from "./vendors/VendorPage";
+import RewardsPage from "./rewards/RewardsPage";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ function App() {
             <Routes>
                 <Route path="/competitions" element={<CompetitionPage />} />
                 <Route path="/vendors" element={<VendorPage />} />
+                <Route path="/rewards" element={<RewardsPage />} />
             </Routes>
         </>
     );

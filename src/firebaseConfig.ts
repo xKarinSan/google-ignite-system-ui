@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app"
-import { getDatabase } from "firebase/database"
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
     apiKey: import.meta.env.VITE__FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE__AUTH_DOMAIN,
@@ -8,7 +9,8 @@ const firebaseConfig = {
     storageBucket: import.meta.env.VITE__STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE__MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE__APP_ID,
-}
+};
 
-const app = initializeApp(firebaseConfig)
-export const db = getDatabase(app)
+const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
+export const storage = getStorage(app);
