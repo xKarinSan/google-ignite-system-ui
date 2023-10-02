@@ -33,7 +33,6 @@ function RewardsPage() {
         position: "top",
     });
     const rewardRef = databaseRef(db, "rewards");
-    const rewardImageRef = storageRef(storage);
     // =========== states ===========
     const [rewards, setRewards] = useState<RewardSchema[]>([]); // for all rewards
     const [vendorName, setVendorName] = useState<string>(""); // for adding a reward
@@ -104,6 +103,30 @@ function RewardsPage() {
             });
         }
     };
+
+    // vendorName: string;
+    // discount: string;
+    // imagePath: string;
+    // points: number;
+
+    useEffect(() => {
+        onValue(rewardRef, (snapshot) => {
+            const data = snapshot.val();
+            console.log("data", data);
+            let allRewards: RewardSchema[] = [];
+            Object.keys(data).map((key) => {
+                const { vendorName, discount, imagePath, points } = data[key];
+                allRewards.push({
+                    rewardId: key,
+                    vendorName,
+                    discount,
+                    imagePath,
+                    points,
+                });
+            });
+            setRewards(allRewards);
+        });
+    }, []);
     return (
         <div>
             Rewards
@@ -144,6 +167,28 @@ function RewardsPage() {
             >
                 Add Reward
             </Button>
+            {rewards?.map((reward) => {
+                const { vendorName, discount, imagePath, points } = reward;
+                return (
+                    <>
+                        <br />
+                        <br />
+                        Vendor Name: {vendorName}
+                        <br />
+                        Discount: {discount}
+                        <br />
+                        Points: {points}
+                        <br />
+                        <img
+                            src={imagePath}
+                            alt=""
+                            height={"200px"}
+                            width={"200px"}
+                        />
+                        <br />
+                    </>
+                );
+            })}
         </div>
     );
 }
